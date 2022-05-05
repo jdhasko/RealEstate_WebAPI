@@ -140,11 +140,11 @@ namespace RealEstate_WebAPI.Models
                 //    .OnDelete(DeleteBehavior.ClientSetNull)
                 //    .HasConstraintName("FK_Estate_ToAgent");
 
-                entity.HasOne(d => d.EstateType)
-                    .WithMany(p => p.Estates)
-                    .HasForeignKey(d => d.EstateTypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Estate_ToEstate");
+                //entity.HasOne(d => d.EstateType)
+                //    .WithMany(p => p.Estates)
+                //    .HasForeignKey(d => d.EstateTypeId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Estate_ToEstate");
 
                 //entity.HasOne(d => d.Owner)
                 //    .WithMany(p => p.EstateOwners)

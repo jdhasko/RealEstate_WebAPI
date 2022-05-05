@@ -11,7 +11,7 @@ namespace RealEstate_WebAPI.Models
             //EstateOwners = new HashSet<Estate>();
         }
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Firstname { get; set; } = null!;
         public string Surname { get; set; } = null!;
         public string? PhoneNr { get; set; }

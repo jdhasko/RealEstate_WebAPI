@@ -7,12 +7,10 @@ namespace RealEstate_WebAPI.Models
     {
         public EstateType()
         {
-            Estates = new HashSet<Estate>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; } = null!;
 
-        public virtual ICollection<Estate> Estates { get; set; }
     }
 }

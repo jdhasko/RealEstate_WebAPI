@@ -1,59 +1,78 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using RealEstate_WebAPI.Models;
-using System.Reflection.Metadata.Ecma335;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace RealEstate_WebAPI.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class UserController : ControllerBase
     {
-
-        private readonly ILogger<UserController> _logger;
-
-        public UserController(ILogger<UserController> logger)
-        {
-            _logger = logger;
-        }
-
+        // GET: api/<UserController>
         [HttpGet]
         public IEnumerable<User> GetAll()
         {
-            using(var context = new realestatedbContext())
+            using (var context = new realestatedbContext())
             {
                 return context.Users.ToList();
             }
         }
 
+        // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> Get(int id)
+        public ActionResult<User> Get(int id)
         {
             using (var context = new realestatedbContext())
             {
-                var user = await context.Users.FindAsync(id);
+                User user = context.Users.Find(id);
                 if (user == null) return NotFound();
-                return user;
+                return Ok(user);
             }
         }
 
-        // POST: api/User
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // POST api/<UserController>
         [HttpPost]
-        public async Task<ActionResult<User>> PostCheckout([FromBody] User user)
+        public async Task<ActionResult<User>> Post([FromBody] User user)
         {
+            if(user != null) { 
+                using (var context = new realestatedbContext())
+                {
+                    context.Users.Add(user);
+                    await context.SaveChangesAsync();
+
+                    return Ok(user);
+                }
+            }
+            return BadRequest();
+        }
+
+        // PUT api/<UserController>/5
+        [HttpPut("{id}")]
+        public ActionResult<User> Put(int id, [FromBody] User user)
+        {
+            if (user == null) return BadRequest();
+
+            user.Id = id;   
+
             using (var context = new realestatedbContext())
             {
-                context.Users.Add(user);
-                await context.SaveChangesAsync();
+                var existingUser = context.Users.Find(id);
+                if (existingUser != null)
+                {
+                    existingUser = user;
+                    context.SaveChanges();
+                    return Ok(existingUser);
+                }
+                else return NotFound();
 
-                return CreatedAtAction("User", new { id = user.Id }, user);
             }
+
         }
 
+        // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             using (var context = new realestatedbContext())
             {
@@ -67,39 +86,6 @@ namespace RealEstate_WebAPI.Controllers
                 await context.SaveChangesAsync();
 
                 return NoContent();
-            }
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, User newUser)
-        {
-            if(id != newUser.Id) {
-                return BadRequest();
-            }
-
-            using (var context = new realestatedbContext())
-            {
-                var user = await context.Users.FindAsync(id);
-                if (user == null)
-                {
-                    return NotFound();
-                }
-
-               // context.Users.Update(newUser);
-                context.Entry(newUser).State = EntityState.Modified;
-                //  await context.SaveChangesAsync();
-
-                try
-                {
-                    await context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    throw;
-                }
-
-
-                return Ok(user);
             }
         }
     }

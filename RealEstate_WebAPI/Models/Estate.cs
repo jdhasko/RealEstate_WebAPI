@@ -18,12 +18,9 @@ namespace RealEstate_WebAPI.Models
         public bool? ForRent { get; set; }
         public bool? ForSale { get; set; }
         public decimal? Deposit { get; set; }
-        public bool? RentPrice { get; set; }
+        public int RentPrice { get; set; }
         public int OwnerId { get; set; }
         public int AgentId { get; set; }
 
-        public virtual User Agent { get; set; } = null!;
-        public virtual EstateType EstateType { get; set; } = null!;
-        public virtual User Owner { get; set; } = null!;
     }
 }
