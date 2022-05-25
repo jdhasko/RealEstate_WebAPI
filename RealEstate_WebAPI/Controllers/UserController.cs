@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate_WebAPI.Models;
 
@@ -5,6 +6,7 @@ using RealEstate_WebAPI.Models;
 
 namespace RealEstate_WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase

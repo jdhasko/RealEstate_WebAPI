@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RealEstate_WebAPI.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace RealEstate_WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -31,18 +33,18 @@ namespace RealEstate_WebAPI.Controllers
             }
         }
 
-        // POST api/<AuthController>
-        [HttpPost]
-        public async Task<ActionResult<Auth>> Post([FromBody] Auth auth)
-        {
-            using (var context = new realestatedbContext())
-            {
-                context.Auths.Add(auth);
-                await context.SaveChangesAsync();
+        //// POST api/<AuthController>
+        //[HttpPost]
+        //public async Task<ActionResult<Auth>> Post([FromBody] Auth auth)
+        //{
+        //    using (var context = new realestatedbContext())
+        //    {
+        //        context.Auths.Add(auth);
+        //        await context.SaveChangesAsync();
 
-                return Ok(auth);
-            }
-        }
+        //        return Ok(auth);
+        //    }
+        //}
 
         // PUT api/<AuthController>/5
         [HttpPut("{id}")]
