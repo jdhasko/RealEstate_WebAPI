@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "apis1": {
+      "type": "apis"
+    },
+    "secrets1": {
+      "type": "secrets",
+      "connectionId": "SQL-Kea"
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:Teacher"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
@@ -16,7 +16,9 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7080;http://localhost:5080",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SQL-Kea": "https://realestatewebapivault.vault.azure.net/",
+        "AZURE_USERNAME": "domi1006@stud.kea.dk"
       }
     },
     "IIS Express": {
@@ -24,7 +26,9 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SQL-Kea": "https://realestatewebapivault.vault.azure.net/",
+        "AZURE_USERNAME": "domi1006@stud.kea.dk"
       }
     }
   }

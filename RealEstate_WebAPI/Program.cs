@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Authentication;
 using RealEstate_WebAPI.Handlers;
 using RealEstate_WebAPI.Models;
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var keyVaultEndpoint = new Uri(Environment.GetEnvironmentVariable("SQL-Kea"));
+builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
 
 // Add services to the container.
 

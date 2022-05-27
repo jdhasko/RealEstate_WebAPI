@@ -6,7 +6,6 @@ using RealEstate_WebAPI.Models;
 
 namespace RealEstate_WebAPI.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class EstateTypeController : ControllerBase
